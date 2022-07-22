@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        {% block title %}
+        <title>Static Navigation - SB Admin</title>
+        {% endblock %}
+        <link href="{{asset('build/css/styles.css')}}" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        
+        {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}                                                                                                                                                                                                                                                                                                                                                    
+    </head>
+    {# <div class"d-flex flex-row  justify-content-streched" style="width:100%"> #}
+        <nav class="fixed-top sb-topnav navbar navbar-expand navbar-dark bg-dark ">
+            <!-- Navbar Brand-->
+            
+                <div class="bge-success">
+            
+                <a class="navbar-brand ps-3" href="index.html">Mes activités logistique</a>
+                <!-- Sidebar Toggle-->
+                <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 " id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+                </div>
+                <div class=" w-75  ">
+                    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 d-flex justify-content-end   ">
+                    <li class="nav-item dropdown h-75 ">
+                    <div class="d-flex flex-row h-50 align-items-center">
+                        <span class="text-white  m-2">{% if app.user %} {{app.user.email}}{% endif %}
+                        </span>
+                        <a class="nav-link dropdown-toggle text-white m-2" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                          
+                    </div>
+                        <ul class="dropdown-menu dropdown-menu-end " aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{path("app_register")}}">S'inscrire</a></li>
+                            <li><a class="dropdown-item" href="{{path("app_login")}}">Se connecter</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="{{path("app_logout")}}">Déconnexion</a></li>
+                        </ul>
+                    </li>
+                </ul> 
+                </div>
+                    <!-- Navbar-->
+                {# #}
+            
+          </nav> 
+          {# </div> #}
+            
+           {# <span class="badge badge-pill badge-light badge-lg">
+           {% if app.user %}
+            Bonjour <span class="status">{{app.user.email}}!</span>
+            {% endif %}
+           </span> #}
+            {# <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+             #}
+            
+            {# <div class="dropdown show">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown link
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div> #}
+{# </div> #}
+        
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading"></div>
+                            <a class="nav-link" href="{{path('dashboard')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Tableau de bord
+                            </a>
+                            <div class="sb-sidenav-menu-heading text-white">Menu</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Gestion des outils
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    
+                                    <a class="nav-link" href="{{path('show_myLogin')}}">Logins</a>
+                                    <a class="nav-link" href="{{path('show_service')}}">Services</a>
+                                    <a class="nav-link" href="{{path('show_hour')}}">Horaires</a>
+                                    <a class="nav-link" href="{{path('show_rf')}}">Rfs</a>
+                                    <a class="nav-link" href="{{path('show_cart')}}">Chariots</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMember" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Gestion des Collaborateurs
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseMember" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="{{path('show_member')}}">liste des operateurs</a>
+                                    <a class="nav-link {% if( not app.user) %} disabled{% endif %}" href=" {{path('add_member')}}">gerer les operateurs</a>
+
+                                 </nav>
+                            </div>
+                            
+                            <hr class="text-white">
+                            <div class="sb-sidenav-menu-heading"><a class="text-white text-decoration-none" href="{{path('command')}}">Info activité</a></div>
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseActivity" aria-expanded="false" aria-controls="collapseActivity">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Gestion des activités
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseActivity" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    
+                                    <a class="nav-link" href="">Préparateurs de commande</a>
+                                    <a class="nav-link" href="">Caristes</a>
+                        
+                                </nav>
+                            </div>
+                            {# <a class="nav-link" href="tables.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Tables
+                            </a> #}
+                            {# <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                        Activités
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="login.html">Préparateurs</a>
+                                            <a class="nav-link" href="register.html">Caristes</a>
+                                            <a class="nav-link" href="password.html">Forgot Password</a>
+                                        </nav>
+                                    </div>
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                        Error
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="401.html">401 Page</a>
+                                            <a class="nav-link" href="404.html">404 Page</a>
+                                            <a class="nav-link" href="500.html">500 Page</a>
+                                        </nav>
+                                    </div>
+                                </nav>
+                            </div> #}
+                            
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Statut : {% if app.user %}
+                            <span class="status text-success ">connecté</span> 
+                        {% else %}
+                           <span class="status text-danger ">déconnecté</span> 
+                        {% endif %}
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class=" monStyle sb-sidenav-menu-heading px-4">
+                    {% block pageTitle %}
+                        <h1 >Static Navigation</h1>
+                    {% endblock %}
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                {% for message in app.session.flashBag.get('success') %}
+                                        <div class="alert alert-success" role="alert">
+                                            {{message}}
+                                        </div>
+                                {% endfor %}
+                                {% for message in app.session.flashBag.get('error') %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{message}}
+                                    </div>
+                                {% endfor %}
+                                {% for message in app.session.flashBag.get('danger') %}
+                                    <div class="alert alert-warning" role="alert">
+                                        {{message}}
+                                    </div>
+                                {% endfor %}
+                                {% block body %}
+                                {% block ajout %}{% endblock %}
+                                <p class="mb-0">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem ipsum unde voluptas dignissimos temporibus pariatur soluta perferendis recusandae tenetur? Soluta odit modi unde praesentium fugit! Neque dolores corrupti tenetur vero?
+                                </p>
+                                
+                                {% endblock %}
+                            </div>
+                        </div>
+                        {# <div style="height: 100vh"></div> #}
+                        {# <div class="card mb-4"><div class="card-body">When scrolling, the navigation stays at the top of the page. This is the end of the static navigation demo.</div></div> #}
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Chafek Website 2022</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="build/js/scripts.js"></script>
+       
+       
+</html>

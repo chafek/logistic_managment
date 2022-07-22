@@ -1,0 +1,42 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}<title>Gestion des Collaborate</title>{% endblock %}
+{% block pageTitle %}
+   
+    <h2 class=' text-center m-3 text-primary'>collaborateur #{{member.id}}</h2>
+     <div class="text-end">
+     <a type="btn" href="{{path("show_member")}}" class="btn btn-outline-primary" >Retour à la liste</a>  
+     </div>
+{% endblock %}
+
+{% block body %}
+
+  
+  <div class="card w-75 m-auto text-center bg-primary" style="width:22rem;">
+  {# <img src="..." class="card-img-top" alt="..."> #}
+  <h4 class="text-black "><strong>{{member.getFirstname()}}</strong> <strong>{{member.getLastname()}}</strong></h4>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item ">Id: <strong>{{member.id}}</strong></li>
+
+      <li class="list-group-item ">Login: <strong>{{member.getMyLogin()}}</strong></li>
+    <li class="list-group-item ">Service: <strong>{{member.getService()}}</strong></li>
+    <li class="list-group-item ">Rf: <strong>{{member.getRf()}}</strong></li>
+    <li class="list-group-item ">Horaire: <strong>{{member.getWorktime()}}</strong></li>
+
+      
+      <li class="list-group-item ">
+        Crée le: <strong>{{member.getCreatedAt()|date('d/m/Y à H:i')}}</strong>
+      </li>
+      <li class="list-group-item ">
+        Modifié le: <strong>{{member.getUpdateAt()|date("d/m/Y à H:i")}}</strong>
+      </li>
+     
+   
+  </ul>
+  </div>
+</div>
+
+
+   
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}<title>Gestion des Chariots</title>{% endblock %}
+{% block pageTitle %}
+   
+    <h2 class=' text-center m-3 text-dark'>horaire #{{hour.id}}</h2>
+     <div class="text-end">
+     <a type="btn" href="{{path("show_hour")}}" class="btn btn-outline-primary" >Retour à la liste</a>  
+     </div>
+{% endblock %}
+
+{% block body %}
+
+  
+  <div class="card w-75 m-auto text-center bg-dark" style="width:22rem;">
+  {# <img src="..." class="card-img-top" alt="..."> #}
+  <h4 class="text-white ">Détail de cette plage horaire</h4>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item ">Id: <strong>{{hour.id}}</strong></li>
+    <li class="list-group-item ">Heure début: <strong>{{hour.getStartHour()|date("H:i")}}</strong></li>
+    <li class="list-group-item ">Heure fin: <strong>{{hour.getEndHour()|date("H:i")}}</strong></li>
+
+      
+      <li class="list-group-item ">
+        Crée le: {{hour.getCreatedAt()|date('d/m/Y à H:i')}}
+      </li>
+      <li class="list-group-item ">
+        Modifié le: {{hour.getUpdateAt()|date("d/m/Y à H:i")}}
+      </li>
+      <li class="list-group-item">
+      {% if  hour.getMembers is empty %}
+        Aucun collaborateur associé à ces horaires
+      {% else %}
+        collaborateurs:<br>
+        {% for member in hour.getMembers %}
+            <strong><a href="{{path('detail_member',{id:member.id})}}">{{member.firstName}} {{member.lastName}}</a></strong>,  
+        {% endfor %}
+      {% endif %}
+    </li>
+   
+  </ul>
+  </div>
+</div>
+
+
+   
+{% endblock %}

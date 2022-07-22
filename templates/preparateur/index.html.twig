@@ -1,0 +1,38 @@
+{% extends 'template.html.twig' %}
+
+
+{% block title %}Dashboard{% endblock %}
+
+
+ {% block pageTitle %}
+    <h2 class=' text-center m-3 text-primary'>Préparation de commande</h2>
+{% endblock %}
+
+{% block body %}
+
+      <table class="table table-striped">
+         <thead>
+            <tr>
+
+               <th scope="col">Nom</th>
+               <th scope="col">login</th>
+               <th scope="col">quantité</th>
+            </tr>
+         </thead>
+         <tbody>
+               {% for row in result %}
+                  <tr>
+                     <td scope="row">{{row.firstname}}</td>
+                  
+                  
+                        <td> {{row.myLogin}}</td>
+               
+                        <td>{{row.quantita}}</td>
+
+                  </tr>
+            {% endfor %}
+            
+         </tbody>
+      </table>
+
+{% endblock %}

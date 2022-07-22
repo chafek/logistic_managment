@@ -1,0 +1,18 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Hello CommandController!{% endblock %}
+
+
+    {% block pageTitle %}<h1 class="text-center">Temps de préparation</h1>{% endblock %}
+    {% block body %}
+
+    {% for operator in timeByProfilo %}
+      
+        
+        {% set difference = date(operator.max_ora_movimento).diff(date(operator.min_ora_movimento)) %} #}
+        
+        {{difference|date("%H %i %s")}}<br>
+         
+    {% endfor %}
+
+    {% endblock %}

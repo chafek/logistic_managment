@@ -1,0 +1,17 @@
+{% extends 'template.html.twig' %}
+{% block title %}<title>Gestion des rfs</title>{% endblock %}
+{% block pageTitle %}
+    <h2 class='text-center m-3 text-danger'>Gerer les RFs</h2>
+    <div class="text-end">
+     <a type="btn" href="{{path('show_rf')}}" class="btn btn-outline-primary" >Retour à la liste</a>  
+     </div>
+{% endblock %}
+
+{% block body %}
+    {{form(form)}}
+    {# {{form_start(form) }}
+        <div class="row">
+            <div class="col">{{form_row(form.name)}}</div>
+        </div>
+    {{form_rest(form)}} #}
+{% endblock %}

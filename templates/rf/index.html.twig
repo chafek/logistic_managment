@@ -1,0 +1,51 @@
+{% extends 'template.html.twig' %}
+{% block title %}<title>Gestion des rfs</title>{% endblock %}
+{% block pageTitle %}
+    <h2 class='text-center m-3 text-danger'>liste des RFs</h2>
+{% endblock %}
+
+{% block body %}
+    
+    {# {{form_start(form) }}
+        <div class="row">
+            <div class="col">{{form_row(form.name)}}</div>
+        </div>
+    {{form_rest(form)}} #}
+
+<div class="card mb-4 mt-5">
+    <div class="card-header d-flex justify-content-between" >
+        <div><img src={{asset('build/css/img/rf.png') }} ></img><span  class='m-3 text-bold'>liste des rfs</span></div>
+   
+            <a type="btn" href="{{path('add_rf')}}" class="btn btn-primary  {% if( not app.user) %} disabled{% endif %}" >Ajouter</a>
+  
+
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple " class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-2">Id</th>
+                    <th class="col-md-2">num interne</th>
+                    {# <th class="col-md-3">entrée le</th> #}
+                    <th class="col-md-3">état</th>
+                    {# <th class="col-md-4">num série</th> #} 
+                </tr>
+            </thead> 
+            <tbody>
+                {% for rf in rfs %}
+                    <tr>
+                        <th>{{rf.id}}</th>
+                        <td><a href="{{path("detail_rf",{id:rf.id})}}">{{rf.name}}</a></td>
+                        {# <td>{{rf.owning_date}}</td> #}
+                        <td>{{rf.getState()}}</td>
+                        {# <td>{{rf.serial_number}}</td> #}
+                        <td><a class="btn btn-danger btn-sm m-3  {% if( not app.user) %} disabled{% endif %}" href="{{path('delete_rf',{id:rf.id})}}" role="button">Supprimer</a></td>
+                        <td><a class="btn btn-warning btn-sm m-3  {% if( not app.user) %} disabled{% endif %}" href="{{path('update_rf',{id:rf.id})}}" role="button">Modifier</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

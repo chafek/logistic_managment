@@ -1,0 +1,58 @@
+{% extends 'template.html.twig' %}
+
+
+{% block title %}<title>Gestion des logins</title>{% endblock %}
+{% block pageTitle %}
+    <h2 class=' text-center m-3 text-info'>liste des logins</h2>
+{% endblock %}
+
+{% block body %}
+ <div class="card mb-4 mt-5">
+                             <div class="card-header d-flex justify-content-between" >
+            <div><img src={{asset('build/css/img/key.png') }} ></img><span  class='m-3 text-bold'>liste des logins</span></div>
+            <a type="btn" href="{{path('add_myLogin')}}" class="btn btn-primary  {% if( not app.user) %} disabled{% endif %} " >Ajouter</a>  
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple " class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-md-2">Id</th>
+                                            <th class="col-md-4">Login</th>
+                                            <th class="col-md-3">Member</th>
+                                            <th class="col-md-3"></th>
+
+                                            
+                                        </tr>
+                                    </thead>
+                                    {# <tfoot>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Login</th>
+                                            
+                                        </tr>
+                                    </tfoot> #}
+                                    <tbody>
+                                      
+                                    
+                                    
+                                    {% for login in myLogins %}
+                                        <tr>
+                                        <th>{{login.id}}</th>   
+                                        <td><a href="{{path("detail_myLogin",{id:login.id})}}">{{login.reference}}</a>  </td>
+                                        <td>{% if login.member %}<strong>{{login.member.lastName}} {{login.member.firstName}}</strong> {% else %}
+                                            <p class="text-danger">non attribué</p> {% endif %}</td>
+                                        <td><a class="btn btn-danger btn-sm m-3 {% if( not app.user) %} disabled{% endif %}" href="myLogin/delete/{{login.id}}" role="button">Supprimer</a></td>
+                                        <td><a class="btn btn-warning btn-sm m-3  {% if( not app.user) %} disabled{% endif %}" href="myLogin/update/{{login.id}}" role="button">Modifier</a></td>
+                                        </tr>
+                                        {# <td>{{login.created_at}}</td> #}
+                                    {% endfor %}    
+                                     
+                                      
+                                      
+                                   
+                         
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+{% endblock %}

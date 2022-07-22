@@ -1,0 +1,39 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}<title>Gestion des logins</title>{% endblock %}
+{% block pageTitle %}
+   
+    <h2 class=' text-center m-3 text-warning'>service #{{service.id}}</h2>
+     <div class="text-end">
+     <a type="btn" href="{{path("show_service")}}" class="btn btn-outline-primary" >Retour à la liste</a>  
+     </div>
+{% endblock %}
+
+{% block body %}
+
+  
+  <div class="card w-75 m-auto text-center bg-warning" style="width:22rem;">
+  {# <img src="..." class="card-img-top" alt="..."> #}
+  <h4 class="text-black ">Détail du service</h4>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item ">Id: <strong>{{service.id}}</strong></li>
+    <li class="list-group-item ">service: <strong>{{service.service}}</strong></li>
+    <li class="list-group-item">
+      {% if  service.getMembers is empty %}
+        Aucun collaborateur dans ce service?
+      {% else %}
+        Membres:<br>
+        {% for member in service.getMembers %}
+            <strong><a href="{{path('detail_member',{id:member.id})}}">{{member.firstName}} {{member.lastName}}</a></strong>,  
+        {% endfor %}
+      {% endif %}
+    </li>
+      <li class="list-group-item ">
+        Crée le: {{service.getCreatedAt()|date('d/m/Y à H:i')}}
+      </li>
+      <li class="list-group-item ">
+        Modifié le: {{service.getUpdateAt()|date('d/m/Y à H:i')}}
+      </li>
+
+  {% endblock %}

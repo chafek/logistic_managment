@@ -1,0 +1,60 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}<title>Gestion des Collaborateurs</title>{% endblock %}
+{% block pageTitle %}
+    <h2 class='text-center m-3 text-primary'>Gerer les collaborateurs</h2>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container p-0 " >
+     {# {{form_start(form) }}
+     <div  >
+        {{form_errors(form)}}
+    </div>
+        <div class="form-group row">
+            <div class="col-xs-2">
+                <div >{{form_row(form.firstName)}}</div>
+                <div >{{form_row(form.lastName)}}</div>
+            </div>
+        {{form_rest(form)}}
+        {{form_end(form)}} #}
+
+    <div class="card mb-4 mt-5">
+      <div class="card-header d-flex justify-content-between" >
+           <div><img src={{asset('build/css/img/user.png') }} ></img><span  class='m-3 text-bold'>liste des collaborateurs</span></div>
+
+            <a type="btn" href="{{path('add_member')}}" class="btn btn-primary  {% if( not app.user) %} disabled{% endif %}" >Ajouter</a>  
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple " class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-2">Id</th>
+                    <th class="col-md-2">firstname</th>
+                    {# <th class="col-md-3">entrée le</th> #}
+                    <th class="col-md-3">lastname</th>
+                    <th class="col-md-3">login</th>
+                    <th class="col-md-3">service</th>
+                  
+                </tr>
+            </thead> 
+            <tbody>
+                {% for  member in members %}
+                    <tr>
+                        <th>{{member.id}}</th>
+                        <td><a href="{{path("detail_member",{id:member.id})}}">{{member.firstName}}</a></td>
+                        <td>{{member.lastName}}</td>
+                        <td>{{member.myLogin}}</td>
+                        <td>{{member.service}}</td>
+                        {# <td>{{rf.serial_number}}</td> #}
+                        <td><a class="btn btn-danger btn-sm m-3  {% if( not app.user) %} disabled{% endif %}" href="{{path('delete_member',{id:member.id})}}" role="button">Supprimer</a></td>
+                        <td><a class="btn btn-warning btn-sm m-3  {% if( not app.user) %} disabled{% endif %}" href="{{path('update_member',{id:member.id})}}" role="button">Modifier</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+{% endblock %}

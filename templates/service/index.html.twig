@@ -1,0 +1,63 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}<title>Gestion des services</title>{% endblock %}
+{% block pageTitle %}
+<h2 class='text-center m-3 text-warning'>liste des services</h2>
+{% endblock %}
+
+{% block body %}
+
+
+    
+
+    {# <h5>liste des logins</h5>
+    {% for login in logins %}
+    <h3>{{login.reference}}</h3>
+    {% endfor %} #}
+
+    <div class="card mb-4 mt-5 ">
+         <div class="card-header d-flex justify-content-between" >
+            <span '><i class="fas fa-table me-1"></i>liste des services</span>
+            <a type="btn" href="{{path('add_service')}}" class="btn btn-primary  {% if( not app.user) %} disabled{% endif %}" >Ajouter</a>  
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple " class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-md-2">Id</th>
+                                            <th class="col-md-4">service</th>
+                                            <th class="col-md-3"></th>
+                                            <th class="col-md-3"></th>
+
+                                            
+                                        </tr>
+                                    </thead>
+                                    {# <tfoot>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Login</th>
+                                            
+                                        </tr>
+                                    </tfoot> #}
+                                    <tbody>
+                                        
+                                    
+                                    {% for service in services %}
+                                        <tr>
+                                        <th>{{service.id}}</th>   
+                                        <td><a href="{{path("detail_service",{id:service.id})}}">{{service.service}}</a></td>
+                                        <td><a class="btn btn-danger btn-sm m-3  {% if( not app.user) %} disabled{% endif %}" href="service/delete/{{service.id}}" role="button">Supprimer</a></td>
+                                        <td><a class="btn btn-warning btn-sm m-3  {% if( not app.user) %} disabled{% endif %}" href="service/update/{{service.id}}" role="button">Modifier</a></td>
+                                        </tr>
+                                    {% endfor %}   
+                                     
+                                      
+                                      
+                                   
+                         
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+    
+{% endblock %}

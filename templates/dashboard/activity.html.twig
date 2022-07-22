@@ -1,0 +1,114 @@
+{% extends 'template.html.twig' %}
+
+{% block pageTitle %}
+    <h1 class="text-center text-dark">Productivité</h1>
+{% endblock %}
+
+
+{% block body %}
+
+
+    {# {% for command in commands %} #}
+        {# {% for item in command %} #}
+            {# {{command.data_movimento|date('Y/m/d') }} #}
+    {# {% endfor %}  #}
+      
+
+    {# {% endfor %}  #}
+
+
+    {# {% endfor %} #}
+
+
+    <a href="{{ path('command') }}" type="button" class="btn btn-success w-100 mb-3">Charger MOVIMENTO</a>
+    <main>
+    
+        <div class="container-fluid px-4 mb-4">
+            <form action="#" >
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="dateStart" class="col-form-label"><strong>Données du:</strong></label>
+                </div>
+                <div class="col-auto">
+                    <select name="dateStart" id="dateStart" class="form-select">
+                        {% for startDate in commands %}
+                            <option value="{{startDate.data_movimento|date("Y-m-d")}}">{{startDate.data_movimento|date("d/m/Y")}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <label for="dateEnd" class="col-form-label"><strong>au:</strong></label>
+                </div>
+                  <div class="col-auto">
+                    <select name="dateEnd" id="dateEnd" class="form-select">
+                        {% for startDate in commands|reverse %}
+                            <option value="{{startDate.data_movimento|date("Y-m-d")}}">{{startDate.data_movimento|date("d/m/Y")}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-primary " type="submit">Filtrer</button>
+                </div>
+            </div>
+            </form>
+        </div>
+            
+            <div class="row">
+                <div class="col-xl-6 col-md-6">
+                    <div class="dash-card card bg-primary text-white mb-4">
+                        <div class="card-body">Préparation =
+                            {{ qty_by_date_prep[0].totalDate}} produits
+
+                        </div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <a class="small text-white stretched-link" href="{{path('operator_command',{'dateStart':app.request.get('dateStart'),'dateEnd':app.request.get('dateEnd'),'typo':'220'})}}">View Details</a>
+                            <div class="small text-white">
+                                <i class="fas fa-angle-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-6">
+                    <div class="dash-card card bg-warning text-white mb-4">
+                        <div class="card-body">Cariste=
+                        {{ qty_by_date_cariste[0].totalDate}} produits
+
+                        </div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+            
+                            <a class="small text-white stretched-link" href="{{path('operator_command',{'dateStart':app.request.get('dateStart'),'dateEnd':app.request.get('dateEnd'),'typo':'410'})}}">View Details</a>
+                            <div class="small text-white">
+                                <i class="fas fa-angle-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-chart-area me-1"></i>
+                            Area Chart Example
+                        </div>
+                        <div class="card-body">
+                            <canvas id="myAreaChart" width="100%" height="40"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar me-1"></i>
+                            Bar Chart Example
+                        </div>
+                        <div class="card-body">
+                            <canvas id="myBarChart" width="100%" height="40"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

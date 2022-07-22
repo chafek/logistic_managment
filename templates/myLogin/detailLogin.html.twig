@@ -1,0 +1,41 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}<title>Gestion des logins</title>{% endblock %}
+{% block pageTitle %}
+   
+    <h2 class=' text-center m-3 text-info'>login #{{myLogin.id}}</h2>
+     <div class="text-end">
+     <a type="btn" href="{{path("show_myLogin")}}" class="btn btn-outline-primary" >Retour à la liste</a>  
+     </div>
+{% endblock %}
+
+{% block body %}
+
+  
+  <div class="card w-75 m-auto text-center bg-info" style="width:22rem;">
+  {# <img src="..." class="card-img-top" alt="..."> #}
+  <h4 class="text-black ">Détail du login</h4>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item ">Id: <strong>{{myLogin.id}}</strong></li>
+    <li class="list-group-item ">Réference: <strong>{{myLogin.reference}}</strong></li>
+    <li class="list-group-item ">
+    {% if myLogin.member is empty %}
+       <strong> Non attribué</strong>
+    {% else %}
+         Utilisateur: <strong>{{myLogin.member.getLastname()}} {{myLogin.member.getFirstname()}}</strong>
+    {% endif %}
+     </li>
+      <li class="list-group-item ">
+        Crée le: {{myLogin.getCreatedAt()|date('d/m/Y à H:i')}}
+      </li>
+      <li class="list-group-item ">
+        Modifié le: {{myLogin.getUpdateAt()|date('d/m/Y à H:i')}}
+      </li>
+  </ul>
+  </div>
+</div>
+
+
+   
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'template.html.twig' %}
+{% block title %}
+    <title>Gestion des services</title>
+{% endblock %}
+{% block pageTitle %}
+    <div>
+    <h2 class='text-center m-3 text-warning'>Gerer les services</h2>
+    <div class="text-end">
+     <a type="btn" href="{{path('show_service')}}" class="btn btn-outline-primary" >Retour à la liste</a>  
+     </div>
+    
+    </div>  
+{% endblock %}
+{% block body %}
+    {{form(form)}}
+{% endblock %}

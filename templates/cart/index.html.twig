@@ -1,0 +1,48 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}<title>Gestion des chariots</title>{% endblock %}
+{% block pageTitle %}
+    <h2 class='text-center m-3 text-success'>liste des chariots</h2>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid p-0 " >
+    
+     
+    <div class="card mb-4 mt-5">
+      <div class="card-header d-flex justify-content-between" >
+       <div><img src={{asset('build/css/img/cart.png') }} ></img><span  class='m-3 text-bold'>liste des chariots</span></div>
+   
+            <a type="btn" href="{{path('add_cart')}}" class="btn btn-primary  {% if( not app.user) %} disabled{% endif %}" >Ajouter</a>
+  
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple " class="table table-striped table-hover table-sm">
+            <thead >
+                <tr>
+                    <th class="col-md-1">Id</th>
+                    <th class="col-md-2">Numéro interne</th>
+                    <th class="col-md-2">Etat</th>
+                    <th class="col-md-2">Service</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead> 
+            <tbody>
+                {% for cart in carts %}
+                    <tr>
+                        <th>{{cart.id}}</th>
+                        <td><a href="{{path("detail_cart",{id:cart.id})}}">{{cart.getInternalNumber()}}</a></td>
+                        <td>{{cart.getState()}}</td>
+                        <td>{{cart.service}}</td>
+                        <td><a class="btn-danger btn  {% if( not app.user) %} disabled{% endif %}" href="{{path('delete_cart',{id:cart.id})}}" role="button">Supprimer</a></td>
+                        <td><a class="btn-warning btn  {% if( not app.user) %} disabled{% endif %}" href="{{path('update_cart',{id:cart.id})}}" role="button">Modifier</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

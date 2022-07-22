@@ -1,0 +1,43 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}<title>Gestion des logins</title>{% endblock %}
+{% block pageTitle %}
+   
+    <h2 class=' text-center m-3 text-danger'>rf #{{rf.id}}</h2>
+     <div class="text-end">
+     <a type="btn" href="{{path("show_rf")}}" class="btn btn-outline-primary" >Retour à la liste</a>  
+     </div>
+{% endblock %}
+
+{% block body %}
+
+  
+  <div class="card w-75 m-auto text-center bg-danger" style="width:22rem;">
+  {# <img src="..." class="card-img-top" alt="..."> #}
+  <h4 class="text-black ">Détail de la rf</h4>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item ">Id: <strong>{{rf.id}}</strong></li>
+    <li class="list-group-item ">rf: <strong>{{rf.name}}</strong></li>
+    <li class="list-group-item ">numéro de serie: <strong>{{rf.getSerialNumber}}</strong></li>
+    <li class="list-group-item ">modèle: <strong>{{rf.model}}</strong></li>
+    <li class="list-group-item">
+    {% if  rf.getMembers is empty %}
+      Rf non attribuée.
+    {% else %}
+         utilisateurs:<br>
+      {% for member in rf.getMembers %}
+          <strong><a href="{{path('detail_member',{id:member.id})}}">{{member.firstName}} {{member.lastName}}</a></strong>,  
+      {% endfor %}
+     
+    {% endif %}
+     </li>
+     
+      <li class="list-group-item ">
+        Crée le: {{rf.getCreatedAt()|date('d/m/Y à H:i')}}
+      </li>
+      <li class="list-group-item ">
+        Modifié le: {{rf.getUpdateAt()|date('d/m/Y à H:i')}}
+      </li>
+
+  {% endblock %}
