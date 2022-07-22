@@ -66,6 +66,7 @@ class CommandController extends AbstractController
         $db = mysqli_init();
         mysqli_options($db, MYSQLI_OPT_LOCAL_INFILE, true);
         mysqli_real_connect($db, "localhost", "root", "", "logistic");
+        //modify path to be available in project
         $sql="LOAD DATA INFILE '/xampp/mysql/data/logistic/command.csv' 
         IGNORE INTO TABLE command
         FIELDS TERMINATED BY ';' 
