@@ -31,6 +31,7 @@
                 </div>
                 <div class="col-auto">
                     <select name="dateStart" id="dateStart" class="form-select">
+          
                         {% for startDate in commands %}
                             <option value="{{startDate.data_movimento|date("Y-m-d")}}">{{startDate.data_movimento|date("d/m/Y")}}</option>
                         {% endfor %}
